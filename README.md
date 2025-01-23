@@ -1,8 +1,9 @@
-# React + Vite
+Чтобы установить приложение локально, следуйте этим шагам:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Клонируйте репозиторий: `git clone https://github.com/alexeymasasin/contribution-graph-dpg.git`
+- Перейдите в директорию проекта: `cd contribution-graph-dpg`
+- Установите зависимости: `npm i`
+- Запустите тесты: `npm run dev`
+- Перейдите на `http://localhost:5173/`
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Также есть Deploy на GitHub Pages: https://alexeymasasin.github.io/contribution-graph-dpg/
