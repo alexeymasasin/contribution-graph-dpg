@@ -24,12 +24,13 @@ p {
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 14.52px;
+	user-select: none;
+	-webkit-user-drag: none;
 }
 
 .blocks {
 	display: flex;
 	flex-direction: row;
-	width: 869px;
 	gap: 2px;
 	padding: 2px;
 }

@@ -24,7 +24,9 @@ export default function Blocks() {
 		const calculateDates = () => {
 			const today = new Date();
 			const last50Weeks = [];
-			for (let i = 0; i < 357; i++) {
+			const weekdaysLeft = (7 - new Date().getDay()) % 7;
+
+			for (let i = 0; i < 357 - weekdaysLeft; i++) {
 				const date = new Date(today);
 				date.setDate(today.getDate() - i);
 				last50Weeks.push(date);
