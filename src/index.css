@@ -19,11 +19,20 @@ body {
 .blocks {
 	background-color: #ffffff;
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: row;
 	width: 869px;
-	height: 121px;
 	gap: 2px;
 	padding: 2px;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.column:last-child {
+	margin-right: 0;
 }
 
 .day {

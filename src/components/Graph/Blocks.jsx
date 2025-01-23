@@ -44,13 +44,21 @@ export default function Blocks() {
 
 	return (
 		<div className="blocks">
-			{dates.map((date, index) => (
-				<div
-					tabIndex={0}
-					key={index}
-					className={`day ${getColor(contributions[date] || 0)}`}
-					title={`${date}: ${contributions[date] || 0} commits`}
-				/>
+			{[...Array(51)].map((_, weekIndex) => (
+				<div key={weekIndex} className="column">
+					{[...Array(7)].map((_, dayIndex) => {
+						const index = weekIndex * 7 + dayIndex;
+						const date = dates[index];
+						return (
+							<div
+								key={index}
+								tabIndex={0}
+								className={`day ${getColor(contributions[date] || 0)}`}
+								title={`${date}: ${contributions[date] || 0} commits`}
+							/>
+						);
+					})}
+				</div>
 			))}
 		</div>
 	);
