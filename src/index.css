@@ -148,6 +148,10 @@ p {
 	color: #7c7c7c;
 }
 
+.tooltip-example.tooltip {
+	top: -34px;
+}
+
 .examples-wrapper {
 	margin: 15px 0 0 24px;
 	display: flex;

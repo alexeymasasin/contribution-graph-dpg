@@ -5,11 +5,12 @@ export default function Tooltip({
 	month,
 	year,
 	type,
+	contributionAmount,
 }) {
 	return (
-		<div className="tooltip">
+		<>
 			{type === 'contribution' ? (
-				<>
+				<div className="tooltip">
 					<p className="tooltip-heading">{contributions} contributions</p>
 					<p className="tooltip-date">
 						{dayOfWeek === 0
@@ -27,10 +28,12 @@ export default function Tooltip({
 							: 'Суббота'}
 						, {month} {day}, {year}
 					</p>
-				</>
+				</div>
 			) : (
-				''
+				<div className="tooltip-example tooltip">
+					<p className="tooltip-heading">{contributionAmount} contributions</p>
+				</div>
 			)}
-		</div>
+		</>
 	);
 }
