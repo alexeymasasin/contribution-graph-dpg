@@ -1,0 +1,73 @@
+:root {
+	--gray: #ededed;
+	--veryLightBlue: #acd5f2;
+	--lightBlue: #7fa8c9;
+	--blue: #527ba0;
+	--darkBlue: #254e77;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #323232;
+}
+
+.blocks {
+	background-color: #ffffff;
+	display: flex;
+	flex-wrap: wrap;
+	width: 869px;
+	height: 121px;
+	gap: 2px;
+	padding: 2px;
+}
+
+.day {
+	width: 15px;
+	height: 15px;
+	background-color: var(--gray);
+	position: relative;
+	transform-style: preserve-3d;
+}
+
+.day:hover.day::before {
+	content: '';
+	width: 17px;
+	height: 17px;
+	background-color: #00000050;
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	transform: translateZ(-1px);
+}
+
+.day:focus.day::before {
+	content: '';
+	width: 17px;
+	height: 17px;
+	background-color: #000000e5;
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	transform: translateZ(-1px);
+}
+
+.veryLightBlue {
+	background-color: var(--veryLightBlue);
+}
+
+.lightBlue {
+	background-color: var(--lightBlue);
+}
+
+.blue {
+	background-color: var(--blue);
+}
+
+.darkBlue {
+	background-color: var(--darkBlue);
+}
