@@ -40,16 +40,11 @@ p {
 	gap: 2px;
 }
 
-.column:last-child {
-	margin-right: 0;
-}
-
 .day {
 	width: 15px;
 	height: 15px;
 	background-color: var(--gray);
 	position: relative;
-	transform-style: preserve-3d;
 }
 
 .day:hover.day::before {
@@ -60,7 +55,7 @@ p {
 	position: absolute;
 	top: -1px;
 	left: -1px;
-	transform: translateZ(-1px);
+	z-index: -1;
 }
 
 .day:focus.day::before {
@@ -71,7 +66,7 @@ p {
 	position: absolute;
 	top: -1px;
 	left: -1px;
-	transform: translateZ(-1px);
+	z-index: -1;
 }
 
 .veryLightBlue {
@@ -114,4 +109,52 @@ p {
 	font-size: 12px;
 	margin-bottom: 2px;
 	box-sizing: border-box;
+}
+
+.tooltip {
+	position: absolute;
+	z-index: 1000 !important;
+	top: -50px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #000000;
+	border-radius: 3px;
+	padding: 5px 9px;
+	font-size: 12px;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.tooltip::after {
+	content: '';
+	position: absolute;
+	z-index: 1000;
+	bottom: -8px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 8px solid #000000;
+}
+
+.tooltip-heading {
+	color: #ffffff;
+}
+
+.tooltip-date {
+	font-size: 10px;
+	color: #7c7c7c;
+}
+
+.examples-wrapper {
+	margin: 15px 0 0 24px;
+	display: flex;
+	gap: 6px;
+}
+
+.examples-blocks {
+	display: flex;
+	gap: 2px;
 }

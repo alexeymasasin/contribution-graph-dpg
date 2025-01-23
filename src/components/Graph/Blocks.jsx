@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Tooltip from '../Tooltip/Tooltip';
 
 export default function Blocks() {
 	const [contributions, setContributions] = useState({});
 	const [dates, setDates] = useState([]);
+	const [tooltip, setTooltip] = useState(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -122,6 +124,25 @@ export default function Blocks() {
 	const sortedMonthDates = getSortedDates(dates);
 	const monthLabels = getMonthLabels(sortedMonthDates);
 
+	const handleDayClick = (date) => {
+		if (date) {
+			setTooltip({
+				date: date.toISOString().split('T')[0],
+				contributions: contributions[date.toISOString().split('T')[0]] || 0,
+				dayOfWeek: getDayOfWeek(date),
+				month: date.toLocaleString('ru', { month: 'long' }),
+				day: date.getDate(),
+				year: date.getFullYear(),
+			});
+		} else {
+			setTooltip(null);
+		}
+	};
+
+	const closeTooltip = () => {
+		setTooltip(null);
+	};
+
 	return (
 		<>
 			<div className="months">
@@ -146,14 +167,29 @@ export default function Blocks() {
 											: 'gray'
 									}`}
 									tabIndex={0}
-									title={
+									onClick={() => handleDayClick(date)}
+									onMouseLeave={closeTooltip}
+									role="button"
+									aria-label={
 										date
 											? `${date.toISOString().split('T')[0]}: ${
 													contributions[date.toISOString().split('T')[0]] || 0
 											  } commits`
 											: ''
 									}
-								/>
+								>
+									{tooltip &&
+										tooltip.date === date?.toISOString().split('T')[0] && (
+											<Tooltip
+												type="contribution"
+												contributions={tooltip.contributions}
+												dayOfWeek={tooltip.dayOfWeek}
+												day={tooltip.day}
+												month={tooltip.month}
+												year={tooltip.year}
+											/>
+										)}
+								</div>
 							);
 						})}
 					</div>
