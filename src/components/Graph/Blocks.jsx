@@ -25,7 +25,7 @@ export default function Blocks() {
 			for (let i = 0; i < 357; i++) {
 				const date = new Date(today);
 				date.setDate(today.getDate() - i);
-				last50Weeks.push(date.toISOString().split('T')[0]);
+				last50Weeks.push(date);
 			}
 			setDates(last50Weeks.reverse());
 		};
@@ -42,19 +42,61 @@ export default function Blocks() {
 		return 'gray';
 	};
 
+	const getDayOfWeek = (date) => {
+		return date.getDay();
+	};
+
+	const getSortedDates = (dates) => {
+		const sortedDates = [];
+		for (let i = 0; i < 51; i++) {
+			const week = [];
+			for (let j = 0; j < 7; j++) {
+				const index = i * 7 + j;
+				if (index < dates.length) {
+					week.push(dates[index]);
+				} else {
+					week.push(null);
+				}
+			}
+			week.sort((a, b) => {
+				if (!a) return 1;
+				if (!b) return -1;
+				const dayA = getDayOfWeek(a);
+				const dayB = getDayOfWeek(b);
+				return (dayA === 0 ? 7 : dayA) - (dayB === 0 ? 7 : dayB);
+			});
+			sortedDates.push(...week);
+		}
+		return sortedDates;
+	};
+
+	const sortedDates = getSortedDates(dates);
+
 	return (
 		<div className="blocks">
 			{[...Array(51)].map((_, weekIndex) => (
 				<div key={weekIndex} className="column">
 					{[...Array(7)].map((_, dayIndex) => {
 						const index = weekIndex * 7 + dayIndex;
-						const date = dates[index];
+						const date = sortedDates[index];
 						return (
 							<div
 								key={index}
+								className={`day ${
+									date
+										? getColor(
+												contributions[date.toISOString().split('T')[0]] || 0
+										  )
+										: 'gray'
+								}`}
 								tabIndex={0}
-								className={`day ${getColor(contributions[date] || 0)}`}
-								title={`${date}: ${contributions[date] || 0} commits`}
+								title={
+									date
+										? `${date.toISOString().split('T')[0]}: ${
+												contributions[date.toISOString().split('T')[0]] || 0
+										  } commits`
+										: ''
+								}
 							/>
 						);
 					})}
